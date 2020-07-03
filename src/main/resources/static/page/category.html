@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LC-learning online!</title>
+</head>
+<body>
+<div ng-controller="categoryCtrl" ng-init="initCategory()">
+    <div class="c-status" style="position: relative; top: 80px;">
+        <div class="wCenter">
+            <div class="items">
+                <div class="left">directions:</div>
+                <div class="right">
+                    <div data-name="type" data-id="0" class="item">undergraduate</div>
+                    <div data-name="type" data-id="1" class="item ">master</div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="left">course：</div>
+                <div class="right">
+                    <div data-name="tag" data-id="" class="item">all</div>
+                    <div data-name="tag" data-id="4" class="item ">hot</div>
+                    <div data-name="tag" data-id="3" class="item ">high value</div>
+                    <div data-name="tag" data-id="2" class="item ">common</div>
+                </div>
+            </div>
+
+            <div class="items">
+                <div class="left">type:</div>
+                <div class="right">
+                    <div data-name="attribute" data-id="" class="item">all</div>
+                    <div data-name="attribute" data-id="0" class="item ">basics</div>
+                    <div data-name="attribute" data-id="2" class="item ">creative</div>
+                    <div data-name="attribute" data-id="3" class="item ">languages</div>
+                    <div data-name="attribute" data-id="100" class="item ">other</div>
+                </div>
+            </div>
+
+            <div class="items">
+                <div class="left">status：</div>
+                <div class="right">
+                    <a  class="item " ng-click="setStatus(0)">all</a>
+                    <a  class="item "ng-click="setStatus(1)">opening soon</a>
+                    <a  class="item" ng-click="setStatus(2)">going on</a>
+                    <a  class="item " ng-click="setStatus(3)">finished</a>
+                </div>
+            </div>
+
+            <div class="items">
+                <div class="left">学科：</div>
+                <div class="right subject">
+                    <a class="item" ng-click="setSubject(0)">all</a>
+                    <!-- <div class="more"><span class="trans"><i class="iconfont">&#xe68c;</i></span>更多</div> -->
+                    <a class="item" ng-click="setSubject(1)">phylosophy</a>
+                    <a class="item" ng-click="setSubject(2)">economics</a>
+                    <a class="item" ng-click="setSubject(3)">law</a>
+                    <a class="item" ng-click="setSubject(4)">education</a>
+                    <a class="item" ng-click="setSubject(5)">literal</a>
+                    <a class="item" ng-click="setSubject(6)">history</a>
+                    <a class="item" ng-click="setSubject(10)">medical</a>
+                    <a class="item" ng-click="setSubject(11)">manage</a>
+                    <a class="item" ng-click="setSubject(12)">art</a>
+                    <a class="item" ng-click="setSubject(13)">sport</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--挑选出的课程-->
+    <div class="jk-uptodate" style="position: relative；top:20px">
+        <ul style="width: 1500px">
+            <li ng-repeat="x in selectLesson" class="uptodate">
+                <a ng-click="goDetail_2(x)">
+                    <div class="uptodate-img">
+                        <img src="{{x.imgLink}}" alt="" style="width: 100%;">
+                    </div>
+                    <p class="uptodate-title">{{x.lessonName}}</p>
+                    <p class="uptodate-info">
+                        {{x.subject}}
+                        <span>|</span>{{x.schoolName}}
+
+                    </p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div style="text-align: center; position: relative;top:100px"  >
+        <ul class="pagination">
+            <li><a href ng-click="prevPage()">&laquo;</a></li>
+            <li ng-repeat="page in pages">
+                <a href ng-click="selectPage(page)" class="pageIndex">{{page}}</a>
+            </li>
+            <li><a href ng-click="nextPage()">&raquo;</a></li>
+        </ul><br>
+        <p>the<span>{{currentPage}}</span>page / {{totalPage}}page in total</p>
+    </div>
+
+</div>
+</body>
+</html>

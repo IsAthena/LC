@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../shared/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../shared/css/milligram.min.css">
+</head>
+<body>
+<div class="row" ng-controller="lessonManagerCtrl" ng-init="initLessonManager()">
+    <div id="sidebar" class="column" style="margin-top: 100px;background: #dbd2c424;">
+<!--        <h5>Navigation</h5>-->
+        <ul style="margin-top: 50px;">
+            <li><a ng-click="jump(1)"><em class="fa fa-university" style="    color: #87989b;"></em> personal info</a></li>
+            <li><a ng-click="jump(2)"><em class="fa fa fa-th" style="    color: #87989b;"></em> course</a></li>
+            <li><a ng-click="jump(3)"><em class="fa fa-plus-square" style="    color: #87989b;"></em> teacher</a></li>
+        </ul>
+    </div>
+
+
+    <section id="main-content" class="column column-offset-20">
+
+
+
+        <div class="row grid-responsive">
+            <div class="column page-heading">
+                <div class="large-card" style="background: #dbd2c424;">
+                    <h1 style="margin-bottom: 10px;color: #dfdcad;">Hey {{currentManager.nickName}}</h1>
+                    <p style="    color: #f0f8ff8a;" class="text-large">Hello,
+                        <span style="font-weight: bold">welcome to LC</span></p>
+                    <p style="float: right;    color: #f0f8ff8a;"> --your best company</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div ng-if="_page_1()">
+        <div class="panel panel-default bootstrap-admin-no-table-panel" style="background-color: #a9f4de24;">
+            <div class="panel-heading" style="background-color: #dbd2c424;">
+                <div class="text-muted bootstrap-admin-box-title" style="color:#dfdcad;">modify personal info</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label style="    color:#dfdcad;" class="col-lg-2 control-label">name</label>
+                            <div class="col-lg-8">
+                                <input style="    color: #dfdcad;"class="form-control" id="realName" type="text"
+                                       value="{{currentManager.realName}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="    color: #dfdcad;" class="col-lg-2 control-label" >nick name</label>
+                            <div class="col-lg-8">
+                                <input style="    color:#dfdcad;" class="form-control" id="nickName" type="text"
+                                value="{{currentManager.nickName}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="    color: #dfdcad;" class="col-lg-2 control-label" >pwd</label>
+                            <div class="col-lg-8">
+                                <input style="    color: #dfdcad;" class="form-control" id="pwd" type="text"
+                                       value="{{currentManager.pwd}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="    color: #dfdcad;" class="col-lg-2 control-label" >school</label>
+                            <div class="col-lg-8">
+                                <input style="      background-color: #ff000000;  color: #dfdcad;" class="form-control" id="schoolName" type="text"
+                                       value="{{currentManager.schoolName}}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  style="    color: #dfdcad;" class="col-lg-2 control-label" >department</label>
+                            <div class="col-lg-8">
+                                <input style="      background-color: #ff000000;  color: #dfdcad;" class="form-control" id="academy" type="text"
+                                       value="{{currentManager.academyName}}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="    color: #dfdcad;" class="col-lg-2 control-label" >gender</label>
+                            <div class="col-lg-8">
+                                <select id="sex">
+                                    <option style="    color:#dfdcad;" class="selected" value="male">male</option>
+                                    <option style="    color:#dfdcad;"  value="female">female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="    color: #dfdcad;" class="col-lg-2 control-label">mailbox</label>
+                            <div class="col-lg-8">
+                                <input style="    color: #dfdcad;" class="form-control" id="email" type="text"
+                                value="{{currentManager.email}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="  color: #dfdcad;" class="col-lg-2 control-label">birthdate</label>
+                            <div class="col-lg-8">
+                                <input style="       background-color: #ff000000; color:#dfdcad;" class="form-control" id="birth" type="date"
+                                value="{{currentManager.birth}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label style="    color:#dfdcad;" class="col-lg-2 control-label">personal introduction</label>
+                            <div class="col-lg-8">
+                                <textarea style="     background-color: #ff000000;   color:#dfdcad;" class="form-control" rows="5" placeholder="personal introduction"
+                                id = "introduction">{{currentManager.introduction}}</textarea>
+                            </div>
+                        </div>
+
+
+                        <div style="text-align: center;">
+                            <button style="    background-color: #bc9696;    width: 100px;
+    border-radius: 16px;
+    margin-left: -60px;
+    border-color: #bc9696;" type="submit" class="btn btn-success mr10" ng-click="updateLeMan()">save</button>
+                            <button style="    background-color: #bc9696;width: 100px;
+    border-radius: 16px;
+    margin-left: 30px;
+    border-color: #bc9696;" type="reset" class="btn btn-danger king-default">cancel</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+
+        </div>
+
+
+
+
+        <div ng-if="_page_2()">
+            <div class="panel panel-default table7_demo king-table7-demo3" style="background-color: #a9f4de24;">
+            <div class="panel-heading" style="background-color: #dbd2c424;    color: #dfdcad;
+">
+                course admin list
+            </div>
+            <div class="panel-body panel-search-body">
+                <button class="king-btn king-radius king-primary" title="添加变量" data-toggle="modal"
+                        data-target="#addLModal">add courses</button>
+            </div>
+            </div>
+            <table style="background-color: #a9f4de24; color: #dfdcad;;
+"class="table table-bordered table7_demo">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>school</th>
+                    <th>department</th>
+                    <th>descipline</th>
+                    <th>status</th>
+                    <th>operatio</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in currentLessons">
+                    <td>{{x.lessonId}}</td>
+                    <td>{{x.lessonName}}</td>
+                    <td>{{x.schoolName}}</td>
+                    <td>{{x.academyName}}</td>
+                    <td>{{x.subject}}</td>
+                    <td>
+                        <span class="label label-info">{{x.status}}</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-xs btn-info" title="上传" data-toggle="modal" data-target="#uploadModal"
+                                ng-click="bindLesson(x)">
+                            <i class="glyphicon glyphicon-upload"></i>
+                        </button>
+                        <button class="btn btn-xs btn-info" title="发送" data-toggle="modal" data-target="#lessonModal"
+                                ng-click="bindLesson(x)">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </button>
+                        <button class="btn btn-xs btn-danger" title="删除" data-toggle="modal" data-target="#deleteLModal"
+                        ng-click="bindLesson(x)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination pagination-sm pull-left mt10" style="margin-top: 10px">
+                <li class="disabled">
+                    <a style="    background-color: #a9f4de24;
+    color: #dfdcad;" ng-click="pre_()" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li ng-repeat="page in Ps_">
+                    <a style="    background-color: #a9f4de24;
+    color: #dfdcad;" href ng-click="selectP_(page)" class="pageIndex">{{page}}</a>
+                </li>
+                <li>
+                    <a style="    background-color: #a9f4de24;
+    color: #dfdcad;" ng-click="next_()" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="uploadModalLabel">upload pics and videos</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <form action="/lesson/imgUpload" method="post" enctype="multipart/form-data" id="uploadImgForm">
+                                            <label class="control-label">pisc: </label>
+                                            <input type="file" class="form-control" name="img" accept="image/*">
+                                            <input type="text" value="{{currentL.lessonId}}" name="fileName">
+                                            <input type="submit" value="submit" ng-click="uploadImg()">
+                                        </form>
+
+                                        <form action="/lesson/videoUpload" method="post" enctype="multipart/form-data" id="uploadVideoForm">
+                                            <label class="control-label">videos: </label>
+                                            <input type="file" class="form-control" name="video" accept="video/*">
+                                            <input type="text" class="form-control" name="id" required>
+                                            <input type="text" value="{{currentL.lessonId}}" name="fileName">
+                                            <input type="submit" value="submit" ng-click="uploadVideo()">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <div class="modal fade" id="addLModal" tabindex="-1" role="dialog" aria-labelledby="addLModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="addLModalLabel">add courses</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">course name: </label>
+                                        <input type="text" class="form-control" id="addLessonName">
+                                        <label class="control-label">学科: </label>
+                                        <select id="addSubject">
+                                            <option>phylosophy</option>
+                                            <option>economics</option>
+                                            <option>law</option>
+                                            <option>education</option>
+                                            <option>literature</option><option>management</option>
+                                            <option>history</option><option>art</option>
+                                            <option>sport</option>
+                                        </select>
+                                        <label class="control-label">credits: </label>
+                                        <select id=addCredit>
+                                            <option>1</option><option>2</option>
+                                            <option>3</option><option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                        <label class="control-label">start from: </label>
+                                        <input type="date" id="addStartTime">
+                                        <input type="date" id="addEndTime">
+                                        <label class="control-label">type: </label>
+                                        <select id=addRecommend>
+                                            <option value="1">high value</option><option value="0">common</option>
+                                        </select>
+                                        <label class="control-label">introduction: </label>
+                                        <textarea class="form-control" rows="5" placeholder="intro"
+                                        id="addIntroduction"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal"
+                            ng-click="addLesson()">submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <div class="modal fade" id="deleteLModal" tabindex="-1" role="dialog" aria-labelledby="deleteLModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="deleteLModalLabel">delete course</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-15">
+                                    <div class="form-group">
+                                        <i class="fa fa-warning fa-2x" style="color:red"></i><span style="padding-left: 10px;">you cannot withdraw this option</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            <button type="button" id="DelLBtn" class="btn btn-danger"
+                                    ng-click="deleteLesson()">delete</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <div class="modal fade" id="lessonModal" tabindex="-1" role="dialog" aria-labelledby="lessonModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="lessonModalLabel">info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">name: </label>
+                                        <input type="text" class="form-control" value="{{currentL.lessonName}}" readonly>
+                                        <label class="control-label">discipline: </label>
+                                        <input type="text" class="form-control" id="subject" value="{{currentL.subject}}" readonly>
+                                        <label class="control-label">start from: </label>
+                                        <input type="date" value="{{currentL.startTime}}" readonly>
+                                        <input type="date" value="{{currentL.endTime}}" readonly>
+                                        <label class="control-label">course intro: </label>
+                                        <textarea class="form-control" rows="5" readonly>
+                                            {{currentL.lessonIntro}}
+                                        </textarea>
+                                        <label class="control-label">send message</label>
+                                        <textarea class="form-control" rows="5" placeholder="to students..."
+                                        id="message">
+
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send()">send</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <div ng-if="_page_3()" style="    background-color:#a9f4de00;
+    color: #dfdcad;">
+
+
+            <div class="panel panel-default pannel-overflow panel-tables table7_demo" style="    background-color: #a9f4de24;
+    color: #dfdcad;">
+                <div class="panel-heading"style="    background-color: #a9f4de00;
+    color: #dfdcad;"> <i class="fa fa-list-ul"></i> teacher list
+                </div>
+                <div class="panel-body panel-search-body" style="    margin-top: 40px;
+    margin-bottom: 20px;">
+                    <a class="king-btn king-radius king-primary" title="添加变量"
+                    data-toggle="modal" data-target="#addTModal">add teachers</a>
+                    <a class="king-btn king-radius king-default" title="数据导入">input data</a>
+                    <a class="king-btn king-radius king-default" title="数据导出">get data</a>
+                </div>
+                <div class="panel-content">
+                    <table style="    background-color: #a9f4de00;
+    color: #dfdcad;" class="table table-header-bg table-hover mb0" id="table_demo2">
+                        <thead>
+                        <tr>
+                            <th style="    background-color: #a9f4de24;
+    color: #dfdcad;width: 100px;    border-color: transparent;">id</th>
+                            <th style="    background-color: #a9f4de24;
+    color: #dfdcad;width:25%;    border-color: transparent;">name</th>
+                            <th style="    background-color: #a9f4de24;
+    color: #dfdcad;width:25%;    border-color: transparent;">position</th>
+                            <th style="    background-color: #a9f4de24;
+    color: #dfdcad;width:15%;    border-color: transparent;">school</th>
+                            <th style="    background-color: #a9f4de24;
+    color: #dfdcad;width:15%;    border-color: transparent;">department</th>
+                            <th style="    background-color: #a9f4de24;
+    color: #dfdcad;    border-color: transparent;">operation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr ng-repeat="x in teachers">
+                            <td style="color: #dfdcad;">{{x.teacherId}}</td>
+                            <td style="color: #dfdcad;">{{x.teacherName}}</td>
+                            <td style="color: #dfdcad;">{{x.job}}</td>
+                            <td style="color: #dfdcad;">{{x.schoolName}}</td>
+                            <td style="color: #dfdcad;">{{x.academyName}}</td>
+                            <td style="color: #dfdcad;">
+                                <button class="btn btn-xs btn-primary" title="上传" ng-click="bindT(x)" data-toggle="modal" data-target="#imgModal">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </button>
+                                <button class="btn btn-xs btn-danger" title="删除" ng-click="deleteT(x)">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="addTModal" tabindex="-1" role="dialog" aria-labelledby="addTModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="addTModalLabel">course info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">teacher name :</label>
+                                        <input type="text" class="form-control"  id="addTName">
+                                        <label class="control-label">position: </label>
+                                        <input type="text" class="form-control" id="addTJob">
+                                        <label class="control-label">department: </label>
+                                        <select id="addTAcademy">
+                                            <option ng-repeat="x in academys">{{x.academyName}}</option>
+                                        </select>
+                                        <label class="control-label">course: </label>
+                                        <button ng-click="getAcademyLesson()">update</button>
+                                        <select id="addTLesson">
+                                            <option ng-repeat="x in academyLesson" value="{{x.lessonId}}">{{x.lessonName}}</option>
+                                        </select>
+                                        <label class="control-label">teacher introduction: </label>
+                                        <textarea class="form-control" rows="5" id="addTIntro">
+
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" ng-click="addTeacher()">submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="imgModalLabel">course info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <form action="/teacher/imgUpload" method="post" enctype="multipart/form-data" id="teacherImgForm">
+                                            <label class="control-label">pics: </label>
+                                            <input type="file" class="form-control" name="img" accept="image/*">
+                                            <input type="text" value="{{currentT.teacherId}}" name="fileName" readonly>
+                                            <input type="submit" value="submit" ng-click="uploadTImg()">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+</div>
+
+
+<script src="js/chart.min.js"></script>
+<script src="js/chart-data.js"></script>
+<script>
+    window.onload = function () {
+        var chart1 = document.getElementById("line-chart").getContext("2d");
+        window.myLine = new Chart(chart1).Line(lineChartData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleFontColor: "#c5c7cc"
+        });
+        var chart2 = document.getElementById("bar-chart").getContext("2d");
+        window.myBar = new Chart(chart2).Bar(barChartData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleFontColor: "#c5c7cc"
+        });
+        var chart4 = document.getElementById("pie-chart").getContext("2d");
+        window.myPie = new Chart(chart4).Pie(pieData, {
+            responsive: true,
+            segmentShowStroke: false
+        });
+        var chart5 = document.getElementById("radar-chart").getContext("2d");
+        window.myRadarChart = new Chart(chart5).Radar(radarData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.05)",
+            angleLineColor: "rgba(0,0,0,.2)"
+        });
+        var chart6 = document.getElementById("polar-area-chart").getContext("2d");
+        window.myPolarAreaChart = new Chart(chart6).PolarArea(polarData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            segmentShowStroke: false
+        });
+    };
+</script>
+</body>
+</html>

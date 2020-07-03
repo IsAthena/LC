@@ -1,0 +1,62 @@
+.c-status {
+    width: 100%;
+    background-color: #6ba5954f;
+    padding: 30px 0;
+}
+.c-status .wCenter {
+     padding: 0 58px;
+ }
+.wCenter {
+    width: 1206px !important;
+    margin: 0 auto;
+}
+.c-status .wCenter .items {
+    display: flex;
+}
+* {
+    box-sizing: border-box;
+}
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+.c-status .wCenter .items .left {
+    padding: 5px 8px;
+    margin-right: 34px;
+    max-width: 100px;
+    text-align: right;
+    font-family: "Arial", "Microsoft Yahei" !important;
+    font-size: 20px;
+    color: #ececd4;
+    letter-spacing: 0;
+}
+.c-status .wCenter .items .right {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+.c-status .wCenter .items .right .item.active {
+    background-image: linear-gradient(-90deg, #61B3FF 0%, #298CFF 100%);
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+.c-status .wCenter .items .right .item:nth-child(1) {
+    margin-left: 0;
+}
+.c-status .wCenter .items .right .item {
+    padding: 5px 8px;
+    cursor: pointer;
+    margin-right: 32px;
+    margin-bottom: 20px;
+}
+.c-status .wCenter .items .right .item {
+    padding: 5px 8px;
+    cursor: pointer;
+    margin-right: 32px;
+    margin-bottom: 20px;
+    color: #e7fffb;
+}

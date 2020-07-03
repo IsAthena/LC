@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="compatible-big" ng-controller="schoolsCtrl" ng-init="initSchools()">
+        <div class="s-school">
+            <div class="title">
+                <img src="../img/s-school.png" alt="" >
+            </div>
+            <div class="count"> <span>{{schoolNum}}</span> schools in total</div>
+
+            <div class="school-input"><form id="school-form" action="">
+                <input onkeyup="this.value=this.value.replace(/\s+/g,'')" class="s-cinput" type="text" placeholder="search by name"
+                id="searchVal">
+                <i class="fa fa-search"  ng-click = "searchSchoolName()"></i>
+            </form></div>
+
+            <div class="wCenter w-center">
+                <div class="item" ng-repeat="x in schools">
+                    <a ng-click="goSchool(x)">
+                        <img src="{{x.imgLink}}" alt="{{x.schoolName}}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

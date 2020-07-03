@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 Admin Template</title>
+    <link rel="stylesheet" type="text/css" href="../shared/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../shared/css/milligram.min.css">
+    <!--<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">-->
+    <!--<link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">-->
+
+</head>
+
+<body>
+
+
+<div class="row" ng-controller="administerCtrl" ng-init="initManager()">
+    <div id="sidebar" class="column" style="margin-top: 100px">
+        <br>
+        <br>
+        <ul>
+            <li><a ng-click="jump(1)"><em class="fa fa-university"></em> system administer</a></li>
+            <li><a ng-click="jump(2)"><em class="fa fa fa-th"></em> course administer</a></li>
+            <li><a ng-click="jump(3)"><em class="fa fa-plus-square"></em> school</a>
+            <li><a ng-click="jump(4)"><em class="fa fa-info-circle"></em> info</a></li>
+        </ul>
+    </div>
+
+
+    <section id="main-content" class="column column-offset-20">
+
+
+
+        <div class="row grid-responsive">
+            <div class="column page-heading">
+                <div class="large-card">
+                    <h1 style="color: #dfdcad;margin-bottom: 10px">Hey {{currentSystemManager.nickName}}</h1>
+                    <p class="text-large" style="color: #f0f8ff8a">Hello,
+                        <span style="font-weight: bold";style="color: #f0f8ff8a">welcom to LC</span></p>
+                    <p style="float: right;color: #f0f8ff8a"> -- your loyal company</p>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="page_1()">
+        <!--system administer-->
+        <div class="panel panel-default table7_demo king-table7-demo3" style="background-color:#a9f4de24;border-color: #a9f4de24;">
+            <div class="panel-heading" style="background: #dbd2c424;color: #dfdcad;border-color: #a9f4de24;">
+                admin list
+            </div>
+            <div>
+                <table class="table table-hover mb0" style="background: #ffffff00;color: #dfdcad;">
+                    <thead style="background-color: #ffffff00;">
+                    <tr class="active">
+                        <th style="width:150px;background-color: #ffffff00;border-color: #ffffff00">name</th>
+                        <th style="width:250px;background-color: #ffffff00;border-color: #ffffff00">nick name</th>
+                        <th style="width:100px;background-color: #ffffff00;border-color: #ffffff00">gender</th>
+                        <th style="width:300px;background-color: #ffffff00;border-color: #ffffff00">identity</th>
+                        <th style="width:200px;background-color: #ffffff00;border-color: #ffffff00">operation</th>
+                    </tr>
+                    </thead>
+                    <tbody id="datas" style="border-color: #ffffff00">
+                    <tr ng-repeat="x in allSystemManager"  style="display: table-row; opacity: 1;">
+                        <td style="border-color: #ffffff00">{{x.realName}}</td>
+                        <td style="border-color: #ffffff00">{{x.nickName}}</td>
+                        <td style="border-color: #ffffff00">{{x.sex}}</td>
+                        <td style="border-color: #ffffff00">system administer</td>
+                        <td style="border-color: #ffffff00">
+                            <button class="btn btn-info" data-toggle="modal" data-target="#infoModal"
+                            ng-click="bindingSys(x)">details</button>
+                            <button class="btn btn-danger" ng-click="deleteSys(x)">注销</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="infoModalLabel"personal info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">name: </label>
+                                    <input type="text" class="form-control" id="relName" value="{{bindSysMan.realName}}" readonly>
+                                    <label class="control-label">tel: </label>
+                                    <input type="text" class="form-control" id="phone" value="{{bindSysMan.phone}}" readonly>
+                                    <label class="control-label">e-mail:</label>
+                                    <input type="text" class="form-control" id="email" value="{{bindSysMan.email}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div ng-if="page_2()">
+
+        <div class="panel panel-default table7_demo king-table7-demo3" style="background:#a9f4de24;border-color:#a9f4de24;">
+            <div class="panel-heading" style="background: #dbd2c424;color: #dfdcad;border-color: #a9f4de24;">
+                课程管理员列表
+            </div>
+            <div class="panel-body panel-search-body">
+
+                <button class="btn btn-primary pull-right" ng-click="searchByType()" style="    position: relative;
+    left: 10px;
+    top: 10px;
+    background-color: #00ffff00;
+    border-color: white;
+    color: #dfdcad;"
+                >搜索</button>
+                <div class="input-group pull-right king-input-group" style="z-index: 0;">
+                    <input type="text" class="form-control pl30 king-form-control" placeholder="请输入关键字"
+                    id="searchVal">
+                </div>
+
+                <button class="king-btn king-radius king-primary" title="添加变量" data-toggle="modal"
+                data-target="#addLModal">添加成员</button>
+                <div class="form-group pull-right">
+                    <select id="keyType" class="form-control service-sub-title" style="    min-height: 40px;
+    min-width: 60px;
+    background-color: #f8f9f900;
+    color: antiquewhite;
+    text-align-last: center;
+    position: relative;
+    right: 20px;">
+                        <option value="name" selected="selected">姓名</option>
+                        <option value="school">学校</option>
+                    </select>
+                </div>
+
+            </div>
+            <div>
+                <table class="table table-hover mb0" style="
+    background: #dbd2c424;
+    color: #dfdcad;">
+                    <thead style="    background: #dbd2c400;"
+                    <tr class="active" style="    background: #dbd2c400;
+    color: #dfdcad;
+    border-color: #a9f4de24;">
+                        <th style="width:150px;    background: #e2d9cb00;
+    border-color: #ffffff00;">姓名</th>
+                        <th style="width:100px;    background: #e2d9cb00;
+    border-color: #ffffff00;">学校</th>
+                        <th style="width:100px;    background: #e2d9cb00;
+    border-color: #ffffff00;">学院</th>
+                        <th style="width:300px;    background: #e2d9cb00;
+    border-color: #ffffff00;">身份</th>
+                        <th style="width: 200px;    background: #e2d9cb00;
+    border-color: #ffffff00;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="datas_2">
+                    <tr ng-repeat="x in allLessonManager" style="display: table-row; opacity: 1;">
+                        <td style="border-bottom-color: transparent;">{{x.realName}}</td>
+                        <td style="border-bottom-color: transparent;">{{x.schoolName}}</td>
+                        <td style="border-bottom-color: transparent;">{{x.academyName}}</td>
+                        <td style="border-bottom-color: transparent;">课程管理员</td>
+                        <td style="border-bottom-color: transparent;">
+                            <button class="btn btn-info" data-toggle="modal" data-target="#infoModal_2"
+                            ng-click="bindingLeMan(x)">修改</button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteLModal"
+                                    ng-click="bindingLeMan(x)">注销</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr style="background: transparent;">
+                        <td colspan="5" style="background: transparent;border-bottom-color: transparent;">
+                            <div class="pull-right king-page-box">
+                                <p class="pull-left mt15 mr15" style="color: #dddaab;">
+                                    共<span id="total_2">{{totalP}}</span>条记录，当前第{{currentP}}页
+                                </p>
+                                <ul class="pagination pagination-sm pull-left mt10" style="margin-top: 10px">
+                                    <li class="disabled">
+                                        <a ng-click="pre()" aria-label="Previous" style="    background: #a9f4de24;
+    border-color: transparent;">
+                                            <span aria-hidden="true" style="color: antiquewhite">«</span>
+                                        </a>
+                                    </li>
+                                    <li ng-repeat="page in Ps">
+                                        <a href ng-click="selectP(page)" class="pageIndex" style="    background: #a9f4de24;
+    border-color: transparent;color: antiquewhite">{{page}}</a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="next()" aria-label="Next" style="    background: #a9f4de24;
+    border-color: transparent;color: antiquewhite">
+                                            <span aria-hidden="true" style="color: antiquewhite">»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+            <div class="modal fade" id="infoModal_2" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel_2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="infoModalLabel_2">课程管理员信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">姓名: </label>
+                                        <input type="text" class="form-control" id="relName_2" value="{{bindLeMan.realName}}" required>
+                                        <label class="control-label">学校: </label>
+                                        <select id="allSchools">
+                                            <option ng-repeat="x in allSchools">{{x.schoolName}}</option>
+                                        </select>
+                                        <label class="control-label">学院: </label>
+                                        <button class="btn btn-primary" ng-click="getAcademy(0)">更新</button>
+                                        <select id="allAcdemys">
+                                            <option ng-repeat="x in academys">{{x.academyName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" id="update_L_Btn" class="btn btn-success"
+                            ng-click="updateLessonMan()">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <div class="modal fade" id="addLModal" tabindex="-1" role="dialog" aria-labelledby="addModelLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="addModelLabel">添加课程管理员</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">电话: </label>
+                                        <input type="text" class="form-control" id="lePhone"  required>
+                                        <label class="control-label">姓名: </label>
+                                        <input type="text" class="form-control" id="leName"  required>
+                                        <label class="control-label">密码: </label>
+                                        <input type="text" class="form-control" id="lePwd"  required>
+                                        <label class="control-label">学校: </label>
+                                        <select id="leSchool" class="form-control">
+                                            <option ng-repeat="x in allSchools">{{x.schoolName}}</option>
+                                        </select>
+                                        <label class="control-label">学院: </label>
+                                        <button class="btn btn-primary" ng-click="getAcademy(1)">更新</button>
+                                        <select id="leAcademy" class="form-control">
+                                            <option ng-repeat="x in academys">{{x.academyName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" id="addLessonManagerBtn" class="btn btn-success"
+                            ng-click="addLeMan()">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+
+            <div class="modal fade" id="deleteLModal" tabindex="-1" role="dialog" aria-labelledby="deleteLModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="deleteLModalLabel">删除课程管理员</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-15">
+                                    <div class="form-group">
+                                        <i class="fa fa-warning fa-2x" style="color:red"></i><span style="padding-left: 10px;">删除此管理员后，不可撤销。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" id="DelLBtn" class="btn btn-danger"
+                            ng-click="deleteLeMan()">删除</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div ng-if="page_3()">
+
+            <div class="container-fluid">
+                <div class="panel panel-default pannel-overflow panel-list" style="background-color: #a9f4de24;
+    border-color: transparent;">
+                    <div class="panel-heading" style="background-color: #a9f4de24;
+    border-color: transparent;color: #dfdcad">
+                        <i class="fa fa-list-ul"></i>已注册学校列表
+                    </div>
+                    <div class="panel-btns" style="margin-top: 40px;    background-color: #a9f4de24;
+    border-color: transparent;">
+                        <a class="king-btn king-radius king-primary" title="保存绑定关系"
+                        data-toggle="modal" data-target="#addSModal">增添学校</a>
+                        <a class="king-btn king-radius king-primary" title="保存绑定关系"
+                           data-toggle="modal" data-target="#schoolImgModal">上传图片</a>
+                    </div>
+                    <div class="panel-body" >
+                        <div class="panel-content container" >
+                            <ul style="list-style: none;">
+                                <li ng-repeat="x in allSchools" >
+                                    <a ng-click="getPage3Academy(x)" style="color: #dfdcad">
+                                        <i class="fa fa-bank" ></i>{{x.schoolName}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default pannel-overflow panel-tables" style="    background-color: #a9f4de24;
+    border-color: transparent;">
+                    <div class="panel-heading" style="    background-color: #a9f4de24;
+    border-color: transparent;color: #dfdcad">
+                        <i class="fa fa-list-ul"></i>已注册学院列表
+                    </div>
+                    <div class="panel-btns">
+                        <a class="king-btn king-radius king-primary" title="保存绑定关系" data-toggle="modal"
+                        data-target="#addAModal">增添学院</a>
+                        <a class="king-btn king-radius king-danger" title="保存绑定关系" style="color: white"
+                        ng-click="deleteAcademy()">删除学院</a>
+                        <span class="hint-info" style="color: #dfdcad"><i class="hint"></i>勾选配置文件以进行绑定，反选以进行解绑</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel-content">
+                            <div class="table-group">
+                                <table class="table table-out-bordered table-header-bg table-hover" style="    background-color: #a9f4de00;
+    border-color: transparent;">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:38px;text-align:center;    background-color: #a9f4de00;
+    border-color: transparent;"><input type="radio" value=""></th>
+                                        <th style="    background-color: #a9f4de00;
+    border-color: transparent;color: #dfdcad">学院名</th>
+                                        <th  style="    background-color: #a9f4de00;
+    border-color: transparent;color: #dfdcad">所属大学</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr ng-repeat="x in bindSchoolAcademys">
+                                        <td align="center" style="    background-color: #a9f4de00;
+    border-color: transparent;">
+                                            <input type="radio" name="selection" value="{{x.academyId}}"></td>
+                                        <td style="    background-color: #a9f4de00;
+    border-color: transparent;color: #dfdcad">{{x.academyName}}</td>
+                                        <td style="    background-color: #a9f4de00;
+    border-color: transparent;color: #dfdcad">{{x.schoolName}}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="schoolImgModal" tabindex="-1" role="dialog" aria-labelledby="schoolImgModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="schoolImgModalLabel">课程信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <form action="/school/imgUpload" method="post" enctype="multipart/form-data" id="schoolImgForm">
+                                            <label class="control-label">图片: </label>
+                                            <input type="file" class="form-control" name="img" accept="image/*">
+                                            <input type="text" value="{{page3School.schoolId}}" name="fileName" readonly>
+                                            <input type="submit" value="提交" ng-click="uploadSImg()">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+            <div class="modal fade" id="addSModal" tabindex="-1" role="dialog" aria-labelledby="addModeSLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="addModeSLabel">添加学校</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">学校名: </label>
+                                        <input type="text" class="form-control" id="schoolName"  required>
+                                        <label class="control-label">学校介绍: </label>
+                                        <textarea class="form-control" rows="5" placeholder="学校介绍"
+                                                  id="schoolIntro" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" ng-click="addSchool()" class="btn btn-success">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+
+
+            <div class="modal fade" id="addAModal" tabindex="-1" role="dialog" aria-labelledby="addModeALabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="addModeALabel">添加学院</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">学院名: </label>
+                                        <input type="text" class="form-control" id="academyName"  required>
+                                        <label class="control-label">学校名: </label>
+                                        <select id="schools">
+                                            <option ng-repeat="x in allSchools">{{x.schoolName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" ng-click="addAcademy()" class="btn btn-success">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+
+        </div>
+
+
+
+
+        <div ng-if="page_4()" style="display: inline-flex" class="graph">
+            <img src="../File/img/lessonRank.jpg" alt="课程排行top">
+            <img src="../File/img/subject.jpg" alt="学科课程数量图">
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+</div>
+
+
+<script src="js/chart.min.js"></script>
+<script src="js/chart-data.js"></script>
+
+
+<script>
+    window.onload = function () {
+        var chart1 = document.getElementById("line-chart").getContext("2d");
+        window.myLine = new Chart(chart1).Line(lineChartData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleFontColor: "#c5c7cc"
+        });
+        var chart2 = document.getElementById("bar-chart").getContext("2d");
+        window.myBar = new Chart(chart2).Bar(barChartData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleFontColor: "#c5c7cc"
+        });
+        var chart4 = document.getElementById("pie-chart").getContext("2d");
+        window.myPie = new Chart(chart4).Pie(pieData, {
+            responsive: true,
+            segmentShowStroke: false
+        });
+        var chart5 = document.getElementById("radar-chart").getContext("2d");
+        window.myRadarChart = new Chart(chart5).Radar(radarData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.05)",
+            angleLineColor: "rgba(0,0,0,.2)"
+        });
+        var chart6 = document.getElementById("polar-area-chart").getContext("2d");
+        window.myPolarAreaChart = new Chart(chart6).PolarArea(polarData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            segmentShowStroke: false
+        });
+    };
+</script>
+</body>
+</html>
