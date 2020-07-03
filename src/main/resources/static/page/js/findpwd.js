@@ -28,7 +28,7 @@ app.controller('findpwdCtrl', function ($scope, $http, $state,Data) {
             }
         }).then(function successCallback(response) {
             if(response.data.length == 0){
-                alert("输入账号不存在！")
+                alert("acount doesn't exist")
             }
             else {
                 $scope.currentUser = response.data;
@@ -78,17 +78,17 @@ app.controller('findpwdCtrl', function ($scope, $http, $state,Data) {
                 }
             }).then(function successCallback(response) {
                 if (response.data == true) {
-                    alert('修改密码成功')
+                    alert('success')
 
                 } else {
-                    alert("修改密码失败")
+                    alert("fail")
                 }
                 $state.go('login');
 
             })
         }
         else {
-            alert("两次密码输入不一致！")
+            alert("two passwords don't match!")
         }
     };
 

@@ -168,10 +168,10 @@ app.controller('studentCtrl', function ($scope, $http, $state) {   //Data是全�
         var token = window.localStorage.getItem('token');
 
         if(primPwd == newPwd){
-            alert("前后密码一致，请重新输入！");
+            alert("please choose a new one!");
             return;
         }else if(newPwd != confirmPwd){
-            alert("二次密码不一致！请重新确认密码！");
+            alert("two passwords don't match! plaese input again!");
             return;
         }else{
             $http({
@@ -205,11 +205,11 @@ app.controller('studentCtrl', function ($scope, $http, $state) {   //Data是全�
                     }).then(function successCallback(response) {
                         var token = response.data.token;
                         window.localStorage.setItem('token',token);
-                        alert("修改成功！");
+                        alert("success");
                     })
                 }
                 else {
-                    alert("用户名或者密码错误")
+                    alert("account or password is wrong")
                 }
             })
         }
@@ -307,7 +307,7 @@ app.controller('studentCtrl', function ($scope, $http, $state) {   //Data是全�
                 $scope.getLessonByPhone();
             }
             else {
-                alert("删除失败！");
+                alert("fail");
             }
         })
     };
@@ -352,10 +352,10 @@ app.controller('studentCtrl', function ($scope, $http, $state) {   //Data是全�
             if(response.status==200){
                 $('#scoreModal').modal('hide');
                 $scope.getLessonByPhone();
-                alert("评论成功！");
+                alert("success");
             }
             else {
-                alert("评论失败！");
+                alert("fail！");
             }
         })
     };

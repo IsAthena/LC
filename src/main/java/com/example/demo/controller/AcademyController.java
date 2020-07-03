@@ -23,7 +23,7 @@ public class AcademyController {
     AcademyService academyService;
 
 
-    @ApiOperation(value = "获取所有学院", notes = "获取所有学院",httpMethod = "GET")
+    @ApiOperation(value = "get all department", notes = "get all department",httpMethod = "GET")
     @GetMapping("")
     public List<AcademyEntity> getAll() {
         return academyService.getAll();

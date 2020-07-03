@@ -40,7 +40,7 @@ app.controller('loginCtrl', function ($scope, $http, $state) {   //Data是全局
                 $state.go('main');
             }
             else {
-                alert("用户名或者密码错误")
+                alert("account ar password is wrong!")
             }
         })
     };
@@ -51,7 +51,7 @@ app.controller('loginCtrl', function ($scope, $http, $state) {   //Data是全局
         var user = $('#phone_number').val();
         var pwd = $('#code1').val();
         if(user.length == 0 || pwd.length == 0){
-            alert("用户名和密码不能为空！")
+            alert("it cannot be null")
             return;
         }
         if ( pwd == $('#code2').val()){
@@ -66,15 +66,15 @@ app.controller('loginCtrl', function ($scope, $http, $state) {   //Data是全局
                 }
             }).then(function successCallback(response) {
                 if (response.data != null) {
-                    alert('账号注册成功')
+                    alert('success')
                 } else {
-                    alert("账号注册失败")
+                    alert("fail")
                 }
 
             })
         }
         else {
-            alert("两次密码输入不一致！")
+            alert("two passwors doesn't match!")
         }
     };
 

@@ -236,7 +236,7 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
             if(response.status == 200){
                 $scope.getAllSystemManagers();
             }else{
-                alert("删除失败!");
+                alert("fail");
             }
         })
     };
@@ -331,7 +331,7 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
                 $('#infoModal_2').modal('hide');
                 $scope.initManager();
             }else{
-                alert("修改失败!");
+                alert("fail");
             }
         })
     };
@@ -350,11 +350,11 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
             }
         }).then(function successCallback(response) {
             if(response.status == 200){
-                alert("删除成功!");
+                alert("success");
                 $('#deleteLModal').modal('hide');
                 $scope.initManager();
             }else{
-                alert("删除失败!");
+                alert("fail");
             }
         })
     };
@@ -388,7 +388,7 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
                 $('#addLModal').modal('hide');
                 $scope.initManager();
             }else{
-                alert("添加失败!");
+                alert("fail");
             }
         })
     };
@@ -415,7 +415,7 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
                 $('#addSModal').modal('hide');
                 $scope.initManager();
             }else{
-                alert("此学校已存在! 增添失败!");
+                alert("it already exists!");
             }
         })
     };
@@ -442,7 +442,7 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
                 $('#addAModal').modal('hide');
                 $scope.getPage3Academy($scope.page3School);
             }else{
-                alert("此学院已存在! 增添失败!");
+                alert("it already exists!");
             }
         })
     };
@@ -461,10 +461,10 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
             params:{"id": academyId}
         }).then(function successCallback(response) {
             if(response.status == 200){
-                alert("删除成功!");
+                alert("success");
                 $scope.getPage3Academy($scope.page3School);
             }else{
-                alert("删除失败!");
+                alert("fail");
             }
         })
     };
@@ -473,7 +473,7 @@ app.controller('administerCtrl', function ($scope, $http, $state) {
     //上传学校图片
     $scope.uploadSImg = function() {
         $("#schoolImgForm").ajaxForm(function (data) {
-            alert("上传成功！");
+            alert("success！");
             $('#schoolImgModal').modal('hide');
         });
     };

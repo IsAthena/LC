@@ -276,7 +276,7 @@ public class LessonController {
         }
     }
 
-    @ApiOperation(value = "上传课程视频",notes = "上传课程视频")
+    @ApiOperation(value = "upload videos",notes = "upload videos")
     @PostMapping("/videoUpload")
     public void uploadVideo(@RequestParam("video")@ApiParam(value = "video") MultipartFile file,
                        @RequestParam("fileName")@ApiParam(value = "fileName") String fileName){

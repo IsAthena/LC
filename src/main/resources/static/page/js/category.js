@@ -13,8 +13,8 @@ app.controller('categoryCtrl', function ($scope, $http, $state) {
 
     $scope.currentPage = 1;//当前页数
     $scope.totalPage = 1; // 总页数 （根据 总记录数、每页记录数 计算 ）
-    $scope.currentStatus = "全部";
-    $scope.currentSubject = "全部";
+    $scope.currentStatus = "all";
+    $scope.currentSubject = "all";
     $scope.pages = [];
 
 
@@ -48,13 +48,13 @@ app.controller('categoryCtrl', function ($scope, $http, $state) {
     $scope.setStatus = function (status) {
         $scope.currentPage = 1;
         if(status==0){
-            $scope.currentStatus = "全部";
+            $scope.currentStatus = "all";
         }else if(status==1){
-            $scope.currentStatus = "即将开课";
+            $scope.currentStatus = "going to start ";
         }else if(status==2){
-            $scope.currentStatus = "正在开课";
+            $scope.currentStatus = "going on now";
         }else if(status==3){
-            $scope.currentStatus = "已完结";
+            $scope.currentStatus = "finished";
         }
         $scope.getLessons();
     };
@@ -64,33 +64,33 @@ app.controller('categoryCtrl', function ($scope, $http, $state) {
     $scope.setSubject = function (subject) {
         $scope.currentPage = 1;
         if(subject==0){
-            $scope.currentSubject = "全部";
+            $scope.currentSubject = "all";
         }else if(subject==1){
-            $scope.currentSubject = "哲学";
+            $scope.currentSubject = "phylosophy";
         }else if(subject==2){
-            $scope.currentSubject = "经济学";
+            $scope.currentSubject = "economics";
         }else if(subject==3){
-            $scope.currentSubject = "法学";
+            $scope.currentSubject = "law";
         }else if(subject==4){
-            $scope.currentSubject = "教育学";
+            $scope.currentSubject = "education";
         }else if(subject==5){
-            $scope.currentSubject = "文学";
+            $scope.currentSubject = "literature";
         }else if(subject==6){
-            $scope.currentSubject = "历史学";
+            $scope.currentSubject = "history";
         }else if(subject==7){
-            $scope.currentSubject = "理学";
+            $scope.currentSubject = "math";
         }else if(subject==8){
-            $scope.currentSubject = "工学";
+            $scope.currentSubject = "egineer";
         }else if(subject==9){
-            $scope.currentSubject = "农学";
+            $scope.currentSubject = "geography";
         }else if(subject==10){
-            $scope.currentSubject = "医学";
+            $scope.currentSubject = "physics";
         }else if(subject==11){
-            $scope.currentSubject = "管理学";
+            $scope.currentSubject = "management";
         }else if(subject==12){
-            $scope.currentSubject = "艺术学";
+            $scope.currentSubject = "art";
         } else if(subject==13){
-            $scope.currentSubject = "体育";
+            $scope.currentSubject = "sport";
         }
         $scope.getLessons();
     };

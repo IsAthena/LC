@@ -109,12 +109,12 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
             }
         }).then(function successCallback(response) {
             if(response.status == 200){
-                alert("修改成功！");
+                alert("success！");
                 var token = response.data.token;
                 window.localStorage.setItem('token',token);
                 $scope.initLessonManager();
             }else{
-                alert("修改失败!");
+                alert("fail");
             }
         })
 
@@ -196,13 +196,13 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
 
         var nowTime = $scope.getNowFormatDate();
         if($scope.compareDate(startTime,endTime)==false){
-            alert("开始时间不能大于结束时间！");
+            alert("wrong time!！");
         }else if($scope.compareDate(startTime,nowTime)==false){
-            status = "即将开课";
+            status = "going to start";
         }else if($scope.compareDate(nowTime,endTime)==false){
-            status = "已完结";
+            status = "finished";
         }else{
-            status="正在开课";
+            status="going on now";
         }
 
         $http({
@@ -225,10 +225,10 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
             }
         }).then(function successCallback(response) {
             if(response.status == 200){
-                alert("添加成功！");
+                alert("success！");
                 $scope.getLessons();
             }else{
-                alert("添加失败!");
+                alert("fail!");
             }
         })
     };
@@ -283,7 +283,7 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
             }
         }).then(function successCallback(response) {
             if(response.status == 200){
-                alert("删除成功！");
+                alert("success！");
                 $('#deleteLModal').modal('hide');
                 $scope.getLessons();
             }
@@ -325,7 +325,7 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
                 }).then(function successCallback(response) {
                 })
             }
-            alert("发送成功！");
+            alert("success！");
 
         })
     };
@@ -405,15 +405,15 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
                     }
                 }).then(function successCallback(response) {
                     if(response.status == 200){
-                        alert("添加成功!");
+                        alert("success");
                         $('#addTModal').modal('hide');
                         $scope.getTeachers();
                     }else{
-                        alert("添加失败！");
+                        alert("fail");
                     }
                 })
             }else{
-                alert("添加失败！");
+                alert("fail！");
             }
         })
     };
@@ -465,35 +465,35 @@ app.controller('lessonManagerCtrl', function ($scope, $http) {
                     }
                 }).then(function successCallback(response) {
                     if(response.status==200){
-                        alert("删除成功！");
+                        alert("success！");
                         $scope.getTeachers();
                     }else{
-                        alert("删除失败!");
+                        alert("fail!");
                     }
                 })
             }else{
-                alert("删除失败!");
+                alert("fail");
             }
         })
     };
 
     $scope.uploadImg = function() {
         $("#uploadImgForm").ajaxForm(function (data) {
-            alert("上传成功！");
+            alert("success");
             $('#uploadModal').modal('hide');
         });
     };
 
     $scope.uploadTImg = function() {
         $("#teacherImgForm").ajaxForm(function (data) {
-            alert("上传成功！");
+            alert("success");
             $('#imgModal').modal('hide');
         });
     };
 
     $scope.uploadVideo = function() {
         $("#uploadVideoForm").ajaxForm(function (data) {
-            alert("上传成功！");
+            alert("success");
             $('#uploadModal').modal('hide');
         });
     };

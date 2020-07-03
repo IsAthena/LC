@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(value = "MessageController|学生课程消息控制器")
+@Api(value = "MessageController")
 @RestController
 @RequestMapping("/message")
 public class MessageController {
@@ -32,52 +32,52 @@ public class MessageController {
         this.specUtil = specUtil;
     }
 
-    @ApiOperation(value = "获取所有学生课程消息", notes = "获取所有学生课程消息",httpMethod = "GET")
+    @ApiOperation(value = "get course message", notes = "get course message",httpMethod = "GET")
     @GetMapping("")
     public List<MessageEntity> getAll() {
         return messageService.getAll();
     }
 
-    @ApiOperation(value = "根据学生手机号和课程号获取消息列表", notes = "根据学生手机号和课程号获取消息列表",httpMethod = "GET")
+    @ApiOperation(value = "get message list by phone and course id", notes = "get message list by phone and course id",httpMethod = "GET")
     @GetMapping("/phoneAndLessonId")
-    public List<MessageEntity> getByPhoneAndLessonId(@RequestParam @ApiParam(value = "学生手机号") String phone,
-                                                     @RequestParam @ApiParam(value = "课程号")String lessonId){
+    public List<MessageEntity> getByPhoneAndLessonId(@RequestParam @ApiParam(value = "phone") String phone,
+                                                     @RequestParam @ApiParam(value = "course_id")String lessonId){
         return messageService.getByPhoneAndLessonId(phone,lessonId);
     }
 
     @PreAuthorize("hasRole('student')")
-    @ApiOperation(value = "根据学生手机号获取消息列表", notes = "根据学生手机号获取消息列表",httpMethod = "GET")
+    @ApiOperation(value = "get message list by phone", notes = "get message list by phone",httpMethod = "GET")
     @GetMapping("/phone")
-    public List<MessageEntity> getByPhone(@RequestParam @ApiParam(value = "学生手机号") String phone){
+    public List<MessageEntity> getByPhone(@RequestParam @ApiParam(value = "student phone") String phone){
         return messageService.getByPhone(phone);
     }
 
-    @ApiOperation(value = "分页根据学生手机号和课程号获取消息列表", notes = "分页根据学生手机号和课程号获取消息列表",httpMethod = "GET")
+    @ApiOperation(value = "get message list by phone and course id", notes = "get message list by phone and course id",httpMethod = "GET")
     @GetMapping("/getPagesByPhoneAndLessonId")
     public Page<MessageEntity> getPagesByPhoneAndLessonId(@PageableDefault(size = 12, sort = {"time"}, direction = Sort.Direction.DESC)@ApiParam(value = "分页信息") Pageable pageable,
-                                             @RequestParam(value = "phone")@ApiParam(value = "学生手机号") String phone,
-                                             @RequestParam(value = "lessonId")@ApiParam(value = "课程号") String lessonId) {
+                                             @RequestParam(value = "phone")@ApiParam(value = "phone") String phone,
+                                             @RequestParam(value = "lessonId")@ApiParam(value = "course id") String lessonId) {
         Specification<MessageEntity> specification = specUtil.createSpecificationByPhoneAndLessonId(phone,lessonId);
         return messageService.getAll(specification,pageable);
     }
 
-    @ApiOperation(value = "分页根据学生手机号获取消息列表", notes = "分页根据学生手机号获取消息列表",httpMethod = "GET")
+    @ApiOperation(value = "get message list by phone", notes = "get message list by phone",httpMethod = "GET")
     @GetMapping("/getPagesByPhone")
     public Page<MessageEntity> getPagesByPhone(@PageableDefault(size = 12, sort = {"time"}, direction = Sort.Direction.DESC)@ApiParam(value = "分页信息") Pageable pageable,
-                                               @RequestParam(value = "phone")@ApiParam(value = "学生手机号") String phone) {
+                                               @RequestParam(value = "phone")@ApiParam(value = "phone") String phone) {
         Specification<MessageEntity> specification = specUtil.createSpecificationByPhone(phone);
         return messageService.getAll(specification,pageable);
     }
 
-    @ApiOperation(value = "向数据库中插入学生课程消息", notes = "向数据库中插入学生课程消息",httpMethod = "POST")
-    @ApiParam(name = "messageEntity",value = "学生课程消息实体,其中任意属性都不能为空")
+    @ApiOperation(value = "insert message into data", notes = "insert message into data",httpMethod = "POST")
+    @ApiParam(name = "messageEntity",value = "cannot be null")
     @PostMapping("")
     public void insertMessage(@RequestBody MessageEntity messageEntity) {
         messageService.insertMessage(messageEntity);
     }
 
-    @ApiOperation(value = "根据id删除学生课程消息", notes = "根据id删除学生课程消息",httpMethod = "DELETE")
-    @ApiParam(name = "id",value = "学生课程消息id")
+    @ApiOperation(value = "delet course message by stu id", notes = "delete course message by stu id",httpMethod = "DELETE")
+    @ApiParam(name = "id",value = "student course messageid")
     @DeleteMapping("")
     public void deleteMessage(@RequestParam String id) {
         messageService.deleteMessage(id);

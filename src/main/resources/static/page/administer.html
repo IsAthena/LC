@@ -67,7 +67,7 @@
                         <td style="border-color: #ffffff00">
                             <button class="btn btn-info" data-toggle="modal" data-target="#infoModal"
                             ng-click="bindingSys(x)">details</button>
-                            <button class="btn btn-danger" ng-click="deleteSys(x)">注销</button>
+                            <button class="btn btn-danger" ng-click="deleteSys(x)">delete</button>
                         </td>
                     </tr>
                     </tbody>
@@ -139,7 +139,7 @@
 
         <div class="panel panel-default table7_demo king-table7-demo3" style="background:#a9f4de24;border-color:#a9f4de24;">
             <div class="panel-heading" style="background: #dbd2c424;color: #dfdcad;border-color: #a9f4de24;">
-                课程管理员列表
+                course administer list
             </div>
             <div class="panel-body panel-search-body">
 
@@ -149,14 +149,14 @@
     background-color: #00ffff00;
     border-color: white;
     color: #dfdcad;"
-                >搜索</button>
+                >search</button>
                 <div class="input-group pull-right king-input-group" style="z-index: 0;">
-                    <input type="text" class="form-control pl30 king-form-control" placeholder="请输入关键字"
+                    <input type="text" class="form-control pl30 king-form-control" placeholder="input keyword"
                     id="searchVal">
                 </div>
 
                 <button class="king-btn king-radius king-primary" title="添加变量" data-toggle="modal"
-                data-target="#addLModal">添加成员</button>
+                data-target="#addLModal">add members</button>
                 <div class="form-group pull-right">
                     <select id="keyType" class="form-control service-sub-title" style="    min-height: 40px;
     min-width: 60px;
@@ -165,8 +165,8 @@
     text-align-last: center;
     position: relative;
     right: 20px;">
-                        <option value="name" selected="selected">姓名</option>
-                        <option value="school">学校</option>
+                        <option value="name" selected="selected">name</option>
+                        <option value="school">school</option>
                     </select>
                 </div>
 
@@ -180,15 +180,15 @@
     color: #dfdcad;
     border-color: #a9f4de24;">
                         <th style="width:150px;    background: #e2d9cb00;
-    border-color: #ffffff00;">姓名</th>
+    border-color: #ffffff00;">name</th>
                         <th style="width:100px;    background: #e2d9cb00;
-    border-color: #ffffff00;">学校</th>
+    border-color: #ffffff00;">school</th>
                         <th style="width:100px;    background: #e2d9cb00;
-    border-color: #ffffff00;">学院</th>
+    border-color: #ffffff00;">department</th>
                         <th style="width:300px;    background: #e2d9cb00;
-    border-color: #ffffff00;">身份</th>
+    border-color: #ffffff00;">state</th>
                         <th style="width: 200px;    background: #e2d9cb00;
-    border-color: #ffffff00;">操作</th>
+    border-color: #ffffff00;">operation</th>
                     </tr>
                     </thead>
                     <tbody id="datas_2">
@@ -196,12 +196,12 @@
                         <td style="border-bottom-color: transparent;">{{x.realName}}</td>
                         <td style="border-bottom-color: transparent;">{{x.schoolName}}</td>
                         <td style="border-bottom-color: transparent;">{{x.academyName}}</td>
-                        <td style="border-bottom-color: transparent;">课程管理员</td>
+                        <td style="border-bottom-color: transparent;">course administer</td>
                         <td style="border-bottom-color: transparent;">
                             <button class="btn btn-info" data-toggle="modal" data-target="#infoModal_2"
-                            ng-click="bindingLeMan(x)">修改</button>
+                            ng-click="bindingLeMan(x)">modify</button>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#deleteLModal"
-                                    ng-click="bindingLeMan(x)">注销</button>
+                                    ng-click="bindingLeMan(x)">delete</button>
                         </td>
                     </tr>
                     </tbody>
@@ -210,7 +210,7 @@
                         <td colspan="5" style="background: transparent;border-bottom-color: transparent;">
                             <div class="pull-right king-page-box">
                                 <p class="pull-left mt15 mr15" style="color: #dddaab;">
-                                    共<span id="total_2">{{totalP}}</span>条记录，当前第{{currentP}}页
+                                    <span id="total_2">{{totalP}}</span>record in total，you are in page {{currentP}}
                                 </p>
                                 <ul class="pagination pagination-sm pull-left mt10" style="margin-top: 10px">
                                     <li class="disabled">
@@ -244,19 +244,19 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="infoModalLabel_2">课程管理员信息</h4>
+                            <h4 class="modal-title" id="infoModalLabel_2">course administer info</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">姓名: </label>
+                                        <label class="control-label">name: </label>
                                         <input type="text" class="form-control" id="relName_2" value="{{bindLeMan.realName}}" required>
-                                        <label class="control-label">学校: </label>
+                                        <label class="control-label">school: </label>
                                         <select id="allSchools">
                                             <option ng-repeat="x in allSchools">{{x.schoolName}}</option>
                                         </select>
-                                        <label class="control-label">学院: </label>
+                                        <label class="control-label">department: </label>
                                         <button class="btn btn-primary" ng-click="getAcademy(0)">更新</button>
                                         <select id="allAcdemys">
                                             <option ng-repeat="x in academys">{{x.academyName}}</option>
@@ -268,7 +268,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             <button type="button" id="update_L_Btn" class="btn btn-success"
-                            ng-click="updateLessonMan()">提交</button>
+                            ng-click="updateLessonMan()">submit</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
@@ -279,23 +279,23 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="addModelLabel">添加课程管理员</h4>
+                            <h4 class="modal-title" id="addModelLabel">add course administer</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">电话: </label>
+                                        <label class="control-label">phone: </label>
                                         <input type="text" class="form-control" id="lePhone"  required>
-                                        <label class="control-label">姓名: </label>
+                                        <label class="control-label">name: </label>
                                         <input type="text" class="form-control" id="leName"  required>
-                                        <label class="control-label">密码: </label>
+                                        <label class="control-label">passwors: </label>
                                         <input type="text" class="form-control" id="lePwd"  required>
-                                        <label class="control-label">学校: </label>
+                                        <label class="control-label">school: </label>
                                         <select id="leSchool" class="form-control">
                                             <option ng-repeat="x in allSchools">{{x.schoolName}}</option>
                                         </select>
-                                        <label class="control-label">学院: </label>
+                                        <label class="control-label">department: </label>
                                         <button class="btn btn-primary" ng-click="getAcademy(1)">更新</button>
                                         <select id="leAcademy" class="form-control">
                                             <option ng-repeat="x in academys">{{x.academyName}}</option>
@@ -307,7 +307,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                             <button type="button" id="addLessonManagerBtn" class="btn btn-success"
-                            ng-click="addLeMan()">提交</button>
+                            ng-click="addLeMan()">submit</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
@@ -319,21 +319,21 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="deleteLModalLabel">删除课程管理员</h4>
+                            <h4 class="modal-title" id="deleteLModalLabel">delete course administer</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-15">
                                     <div class="form-group">
-                                        <i class="fa fa-warning fa-2x" style="color:red"></i><span style="padding-left: 10px;">删除此管理员后，不可撤销。</span>
+                                        <i class="fa fa-warning fa-2x" style="color:red"></i><span style="padding-left: 10px;">you cannot withdraw this operation</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
                             <button type="button" id="DelLBtn" class="btn btn-danger"
-                            ng-click="deleteLeMan()">删除</button>
+                            ng-click="deleteLeMan()">delete</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
@@ -354,14 +354,14 @@
     border-color: transparent;">
                     <div class="panel-heading" style="background-color: #a9f4de24;
     border-color: transparent;color: #dfdcad">
-                        <i class="fa fa-list-ul"></i>已注册学校列表
+                        <i class="fa fa-list-ul"></i>school list
                     </div>
                     <div class="panel-btns" style="margin-top: 40px;    background-color: #a9f4de24;
     border-color: transparent;">
                         <a class="king-btn king-radius king-primary" title="保存绑定关系"
-                        data-toggle="modal" data-target="#addSModal">增添学校</a>
+                        data-toggle="modal" data-target="#addSModal">add school</a>
                         <a class="king-btn king-radius king-primary" title="保存绑定关系"
-                           data-toggle="modal" data-target="#schoolImgModal">上传图片</a>
+                           data-toggle="modal" data-target="#schoolImgModal">upload pics</a>
                     </div>
                     <div class="panel-body" >
                         <div class="panel-content container" >
@@ -379,14 +379,14 @@
     border-color: transparent;">
                     <div class="panel-heading" style="    background-color: #a9f4de24;
     border-color: transparent;color: #dfdcad">
-                        <i class="fa fa-list-ul"></i>已注册学院列表
+                        <i class="fa fa-list-ul"></i>department list
                     </div>
                     <div class="panel-btns">
                         <a class="king-btn king-radius king-primary" title="保存绑定关系" data-toggle="modal"
-                        data-target="#addAModal">增添学院</a>
+                        data-target="#addAModal">add department</a>
                         <a class="king-btn king-radius king-danger" title="保存绑定关系" style="color: white"
-                        ng-click="deleteAcademy()">删除学院</a>
-                        <span class="hint-info" style="color: #dfdcad"><i class="hint"></i>勾选配置文件以进行绑定，反选以进行解绑</span>
+                        ng-click="deleteAcademy()">delete department</a>
+                        <span class="hint-info" style="color: #dfdcad"><i class="hint"></i>click to bond files</span>
                     </div>
                     <div class="panel-body">
                         <div class="panel-content">
@@ -398,9 +398,9 @@
                                         <th style="width:38px;text-align:center;    background-color: #a9f4de00;
     border-color: transparent;"><input type="radio" value=""></th>
                                         <th style="    background-color: #a9f4de00;
-    border-color: transparent;color: #dfdcad">学院名</th>
+    border-color: transparent;color: #dfdcad">department name</th>
                                         <th  style="    background-color: #a9f4de00;
-    border-color: transparent;color: #dfdcad">所属大学</th>
+    border-color: transparent;color: #dfdcad">school</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -428,14 +428,14 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="schoolImgModalLabel">课程信息</h4>
+                            <h4 class="modal-title" id="schoolImgModalLabel">course info</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <form action="/school/imgUpload" method="post" enctype="multipart/form-data" id="schoolImgForm">
-                                            <label class="control-label">图片: </label>
+                                            <label class="control-label">pics: </label>
                                             <input type="file" class="form-control" name="img" accept="image/*">
                                             <input type="text" value="{{page3School.schoolId}}" name="fileName" readonly>
                                             <input type="submit" value="提交" ng-click="uploadSImg()">
@@ -459,9 +459,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">学校名: </label>
+                                        <label class="control-label">school name: </label>
                                         <input type="text" class="form-control" id="schoolName"  required>
-                                        <label class="control-label">学校介绍: </label>
+                                        <label class="control-label">school introduction: </label>
                                         <textarea class="form-control" rows="5" placeholder="学校介绍"
                                                   id="schoolIntro" required></textarea>
                                     </div>
@@ -469,8 +469,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" ng-click="addSchool()" class="btn btn-success">提交</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            <button type="button" ng-click="addSchool()" class="btn btn-success">submit</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
@@ -483,15 +483,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="addModeALabel">添加学院</h4>
+                            <h4 class="modal-title" id="addModeALabel">add new department</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">学院名: </label>
+                                        <label class="control-label">department name: </label>
                                         <input type="text" class="form-control" id="academyName"  required>
-                                        <label class="control-label">学校名: </label>
+                                        <label class="control-label">school name: </label>
                                         <select id="schools">
                                             <option ng-repeat="x in allSchools">{{x.schoolName}}</option>
                                         </select>
@@ -500,8 +500,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" ng-click="addAcademy()" class="btn btn-success">提交</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                            <button type="button" ng-click="addAcademy()" class="btn btn-success">submit</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
@@ -513,8 +513,8 @@
 
 
         <div ng-if="page_4()" style="display: inline-flex" class="graph">
-            <img src="../File/img/lessonRank.jpg" alt="课程排行top">
-            <img src="../File/img/subject.jpg" alt="学科课程数量图">
+            <img src="../File/img/lessonRank.jpg" alt="top course">
+            <img src="../File/img/subject.jpg" alt="statistic of courses number in different discipline">
 
         </div>
 
